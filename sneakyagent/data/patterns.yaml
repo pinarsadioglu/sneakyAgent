@@ -1,0 +1,28 @@
+patterns:
+  - id: risky_language_allow_all
+    severity: medium
+    pattern: "allow\\s+all|accept\\s+all|skip\\s+checks"
+  - id: weak_error_handling
+    severity: low
+    pattern: "ignore\\s+errors|swallow\\s+errors"
+  - id: legacy_compat_override
+    severity: low
+    pattern: "legacy\\s+compatibility|backward\\s+compatibility"
+  - id: infra_public_access
+    severity: high
+    pattern: "public.*access|publicly.*accessible|0\\.0\\.0\\.0/0|\\*\\.\\*\\.\\*\\.\\*"
+  - id: infra_weak_password
+    severity: high
+    pattern: "simple.*password|weak.*password|minimum.*[1-4]\\b|no.*password"
+  - id: infra_permissive_network
+    severity: medium
+    pattern: "allow.*all.*traffic|open.*port|unrestricted|any.*any"
+  - id: infra_privileged_container
+    severity: medium
+    pattern: "privileged.*true|run.*as.*root|host.*network"
+  - id: infra_no_encryption
+    severity: medium
+    pattern: "skip.*encrypt|no.*tls|disable.*ssl|plaintext"
+  - id: infra_lax_iam
+    severity: high
+    pattern: "admin.*access|full.*access|\\*:\\*|AllowAll"

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"\nfrom sneakyagent.poison.catalog import RuleCatalog\ncatalog = RuleCatalog.load_default\\(\\)\ninfra = [t for t in catalog.templates if t.category == ''infra-weaken'']\nprint\\(f''Total templates: {len\\(catalog.templates\\)}''\\)\nprint\\(f''Infra-weaken templates: {len\\(infra\\)}''\\)\nfor t in infra:\n    print\\(f''  - {t.id} \\({t.layer}, action={t.action}\\)''\\)\n\")",
+      "Bash(python3:*)",
+      "Bash(find:*)"
+    ]
+  }
+}
