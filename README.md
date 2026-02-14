@@ -54,7 +54,4 @@ The tool is designed for controlled evaluation and does not ship with exploit pa
  sneakyagent report /path/to/run-id --format md
  ```
  
- ## Safety
  
- SneakyAgent is intended for authorized security testing and controlled environments.
- It does not ship with exploit payloads or bypass instructions.
