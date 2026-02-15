@@ -58,34 +58,7 @@ Each step is modular so you can swap strategy, templates, or agent backends.
 
 ### Limitations
 
-- Analysis depth: the current analyzer is regex-based and limited by
-  `sneakyagent/data/patterns.yaml`, so it can detect risky language but
-  cannot prove that security was actually weakened.
-- Coverage: only patterns that are explicitly defined are detected; new
-  or indirect degradations can be missed.
 - Interpretation: findings are signals, not verdicts. Results should be
   reviewed alongside diffs, run artifacts, and domain context.
 
-### Reducing analysis limitations
 
-The most reliable way to quantify impact is to compare poisoned vs baseline
-outputs and interpret drift with a hybrid pipeline.
-
-1. Baseline vs poisoned diff
-   - Run the same task twice (no poison vs poison).
-   - Compare generated outputs and changed files to detect drift.
-
-2. Rule-based prefilter
-   - Use deterministic rules (Semgrep/CodeQL or custom diff heuristics).
-   - Catch clear regressions: auth checks removed, validation bypass,
-     dangerous APIs, weakened crypto, blanket error swallowing.
-
-3. LLM triage (structured)
-   - Use LLMs as a reviewer, not a judge.
-   - Ask for structured output: risk category, claim, evidence lines,
-     confidence, and proposed tests/invariants.
-
-4. Invariant and test validation
-   - Encode security invariants as tests or assertions.
-   - Run the same tests on baseline and poisoned outputs.
-   - Drift is confirmed only when tests pass on baseline and fail on poison.
