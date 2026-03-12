@@ -11,94 +11,67 @@ applies reversible mutations, and records outputs for analysis.
 
 The tool is designed for controlled evaluation and does not ship with exploit payloads or bypass logic.
 
-## Attack Path
-Attacker
-   │
-   │
-   ▼
-Repository Access / Influence
-(commit, PR, dependency, template update,
-docs edit, config change, scaffolding tool)
-   │
-   │
-   ▼
-Context Layer Manipulation
------------------------------------
-• README / documentation
-• AI instruction files
-• config files
-• code comments
-• templates / scaffolding
-• tooling configs
------------------------------------
-   │
-   │
-   ▼
-AI Coding Agent Reads Workspace
-(agent ingests repository context
-as implicit instructions)
-   │
-   │
-   ▼
-Contextual Signal Injection
-(subtle guidance, weakened rules,
-modified examples, misleading patterns)
-   │
-   │
-   ▼
-Agent Task Execution
-(e.g. "refactor auth module",
-"implement API endpoint",
-"add validation")
-   │
-   │
-   ▼
-Influenced Code Generation
------------------------------------
-• weaker validation
-• relaxed auth checks
-• insecure defaults
-• unsafe examples reused
-• policy bypass patterns
------------------------------------
-   │
-   │
-   ▼
-Code Committed / Merged
-(vulnerability introduced through
-AI-generated code)
+## SneakyAgent Context Manipulation Pipeline
 
-## Tool Flow
-Target Repository
-        │
-        ▼
-[Scanner]
-Identify Context Layers
-(docs, configs, templates, metadata)
+```mermaid
+flowchart TD
 
-        │
-        ▼
-[Poison Engine]
-Inject Context Mutations
-(template-based signals)
+A[Target Repository]
 
-        │
-        ▼
-[Agent Execution]
-Run development task
-through AI coding agent
+A --> B[Scanner<br/>Identify Context Layers<br/>docs / configs / templates / metadata]
 
-        │
-        ▼
-[Analyzer]
-Detect behavioral shifts
-in generated code
+B --> C[Mutation Engine]
 
-        │
-        ▼
-[Report]
-Context → Behavior influence mapping
+C --> C1[Template-Based Mutations]
+C --> C2[Search / GA-Based Mutations]
 
+C1 --> D[Apply Context Changes]
+C2 --> D
+
+D --> E[Agent Execution<br/>Run Development Task<br/>through AI Coding Agent]
+
+E --> F[Analyzer<br/>Detect Behavioral Shifts<br/>in Generated Code]
+
+F --> G[Report<br/>Context → Behavior Influence Mapping]
+```
+
+## SneakyAgent Attack Path
+
+```mermaid
+flowchart TD
+
+A[Attacker]
+
+A --> B[Repository Influence<br/>PR / Commit / Dependency / Template Update]
+
+B --> C[Context Manipulation Engine]
+
+C --> C1[Template-Based Context Signals]
+C --> C2[Search / GA-Based Context Mutations]
+
+C1 --> D[Workspace Context Modified]
+C2 --> D
+
+D --> E[AI Coding Agent Reads Workspace Context]
+
+E --> F[Agent Interprets Context as Guidance]
+
+F --> G[Task Execution<br/>refactor / implement / modify code]
+
+G --> H[Influenced Code Generation]
+
+H --> H1[Weaker Validation]
+H --> H2[Relaxed Security Controls]
+H --> H3[Insecure Defaults]
+H --> H4[Unsafe Code Patterns]
+
+H1 --> I[Code Committed / Merged]
+H2 --> I
+H3 --> I
+H4 --> I
+
+I --> J[Security Impact Introduced]
+```
 ## How it works
 
 1. Scan: Enumerate context layers in the target repo.
