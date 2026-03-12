@@ -1,6 +1,6 @@
 # SneakyAgent 
 <p align="center">
-  <img src="assets/mascot.png" width="250">
+  <img src="docs/mascot.png" width="250">
 </p>
 SneakyAgent is a red-teaming tool that evaluates how workspace context influences AI coding agents.
 It scans a repository, injects reversible context signals, and analyzes the impact in a controlled way.
