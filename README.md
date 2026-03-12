@@ -11,6 +11,94 @@ applies reversible mutations, and records outputs for analysis.
 
 The tool is designed for controlled evaluation and does not ship with exploit payloads or bypass logic.
 
+## Attack Path
+Attacker
+   │
+   │
+   ▼
+Repository Access / Influence
+(commit, PR, dependency, template update,
+docs edit, config change, scaffolding tool)
+   │
+   │
+   ▼
+Context Layer Manipulation
+-----------------------------------
+• README / documentation
+• AI instruction files
+• config files
+• code comments
+• templates / scaffolding
+• tooling configs
+-----------------------------------
+   │
+   │
+   ▼
+AI Coding Agent Reads Workspace
+(agent ingests repository context
+as implicit instructions)
+   │
+   │
+   ▼
+Contextual Signal Injection
+(subtle guidance, weakened rules,
+modified examples, misleading patterns)
+   │
+   │
+   ▼
+Agent Task Execution
+(e.g. "refactor auth module",
+"implement API endpoint",
+"add validation")
+   │
+   │
+   ▼
+Influenced Code Generation
+-----------------------------------
+• weaker validation
+• relaxed auth checks
+• insecure defaults
+• unsafe examples reused
+• policy bypass patterns
+-----------------------------------
+   │
+   │
+   ▼
+Code Committed / Merged
+(vulnerability introduced through
+AI-generated code)
+
+## Tool Flow
+Target Repository
+        │
+        ▼
+[Scanner]
+Identify Context Layers
+(docs, configs, templates, metadata)
+
+        │
+        ▼
+[Poison Engine]
+Inject Context Mutations
+(template-based signals)
+
+        │
+        ▼
+[Agent Execution]
+Run development task
+through AI coding agent
+
+        │
+        ▼
+[Analyzer]
+Detect behavioral shifts
+in generated code
+
+        │
+        ▼
+[Report]
+Context → Behavior influence mapping
+
 ## How it works
 
 1. Scan: Enumerate context layers in the target repo.
